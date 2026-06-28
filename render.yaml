@@ -1,0 +1,25 @@
+services:
+  # Backend API
+  - type: web
+    name: campusconnect-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false          # Set in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        sync: false          # Your Vercel frontend URL
+      - key: PORT
+        value: 5000
+      # Add these in Render dashboard when ready:
+      # CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
+      # OPENAI_API_KEY
+      # GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET

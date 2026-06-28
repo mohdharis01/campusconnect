@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #21262d;
+    --border: #30363d;
+    --text-primary: #f0f6fc;
+    --text-secondary: #8b949e;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+  }
+
+  .theme-light {
+    --bg-primary: #f6f8fa;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --border: #d0d7de;
+    --text-primary: #1f2328;
+    --text-secondary: #656d76;
+  }
+
+  .theme-amoled {
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-card: #111111;
+    --border: #1f1f1f;
+  }
+
+  .theme-hacker {
+    --bg-primary: #0d0d0d;
+    --bg-secondary: #111111;
+    --bg-card: #161616;
+    --border: #00ff4122;
+    --accent: #00ff41;
+    --text-primary: #00ff41;
+    --text-secondary: #00cc33;
+  }
+
+  * { box-sizing: border-box; }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+  ::selection { background: rgba(99, 102, 241, 0.3); color: #fff; }
+}
+
+@layer components {
+  /* ── Cards ── */
+  .card {
+    @apply bg-[#161b22] border border-[#30363d] rounded-xl shadow-card-dark;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-indigo-500/50 hover:shadow-glow-sm hover:-translate-y-0.5;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-[#21262d] hover:bg-[#30363d] text-white border border-[#30363d] hover:border-indigo-500/50 font-medium px-4 py-2 rounded-lg transition-all duration-200 active:scale-95;
+  }
+  .btn-ghost {
+    @apply text-[#8b949e] hover:text-white hover:bg-[#21262d] font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  /* ── Inputs ── */
+  .input {
+    @apply bg-[#0d1117] border border-[#30363d] focus:border-indigo-500 text-white placeholder-[#484f58] rounded-lg px-3 py-2 w-full outline-none transition-colors duration-200 focus:ring-1 focus:ring-indigo-500;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full;
+  }
+  .badge-primary { @apply badge bg-indigo-500/20 text-indigo-400 border border-indigo-500/30; }
+  .badge-success { @apply badge bg-green-500/20 text-green-400 border border-green-500/30; }
+  .badge-warning { @apply badge bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+  .badge-danger  { @apply badge bg-red-500/20 text-red-400 border border-red-500/30; }
+  .badge-ghost   { @apply badge bg-[#21262d] text-[#8b949e] border border-[#30363d]; }
+
+  /* ── Verification Badges ── */
+  .verify-community       { @apply badge-ghost; }
+  .verify-teacher         { @apply badge bg-blue-500/20 text-blue-400 border border-blue-500/30; }
+  .verify-admin           { @apply badge bg-purple-500/20 text-purple-400 border border-purple-500/30; }
+
+  /* ── XP Bar ── */
+  .xp-bar {
+    @apply h-1.5 rounded-full bg-[#21262d] overflow-hidden;
+  }
+  .xp-bar-fill {
+    @apply h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500;
+  }
+
+  /* ── Glassmorphism ── */
+  .glass {
+    @apply backdrop-blur-md bg-white/5 border border-white/10;
+  }
+
+  /* ── Shimmer Loading ── */
+  .shimmer {
+    @apply bg-gradient-to-r from-[#21262d] via-[#30363d] to-[#21262d] animate-shimmer bg-[length:200%_100%];
+  }
+
+  /* ── Sidebar ── */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-[#8b949e] hover:text-white hover:bg-[#21262d] transition-all duration-200 font-medium text-sm;
+  }
+  .sidebar-link.active {
+    @apply text-white bg-indigo-600/20 border border-indigo-500/30 text-indigo-400;
+  }
+
+  /* ── Avatar ── */
+  .avatar {
+    @apply rounded-full object-cover bg-[#21262d];
+  }
+  .avatar-sm  { @apply avatar w-8 h-8; }
+  .avatar-md  { @apply avatar w-10 h-10; }
+  .avatar-lg  { @apply avatar w-16 h-16; }
+  .avatar-xl  { @apply avatar w-24 h-24; }
+}
+
+/* ── Rich Text Editor Styles ── */
+.ProseMirror {
+  min-height: 300px;
+  padding: 1rem;
+  outline: none;
+  color: #f0f6fc;
+}
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #484f58;
+  float: left;
+  pointer-events: none;
+  height: 0;
+}
+.ProseMirror h1 { font-size: 2em; font-weight: 700; margin: 1em 0 0.5em; }
+.ProseMirror h2 { font-size: 1.5em; font-weight: 600; margin: 1em 0 0.5em; }
+.ProseMirror h3 { font-size: 1.25em; font-weight: 600; margin: 0.8em 0 0.4em; }
+.ProseMirror ul, .ProseMirror ol { padding-left: 1.5em; margin: 0.5em 0; }
+.ProseMirror blockquote {
+  border-left: 3px solid #6366f1;
+  padding-left: 1em;
+  margin: 1em 0;
+  color: #8b949e;
+}
+.ProseMirror code {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+.ProseMirror pre {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+.ProseMirror pre code { background: none; border: none; padding: 0; }
+.ProseMirror a { color: #6366f1; text-decoration: underline; }
+.ProseMirror img { max-width: 100%; border-radius: 8px; margin: 1em 0; }
+.ProseMirror hr { border: none; border-top: 1px solid #30363d; margin: 1.5em 0; }
